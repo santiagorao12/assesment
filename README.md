@@ -15,33 +15,35 @@ Before proceeding, ensure you have the following installed on your machine:
 
 ### Installation
 
- ### Clone the repository to your local machine using Git:
+### Clone the repository to your local machine using Git:
 
 ```bash
 git clone https://github.com/santiagorao12/assesment
+```
 
-  ### Install the necessary dependencies:
+### Install the necessary dependencies:
 
 ```bash
 go mod download
+```
 
-Running the TMS Backend API
+### Running the TMS Backend API
 
 Start the TMS backend API server with the following command:
 
 ```bash
 go run main.go
+```
 
 The server should now be running at http://localhost:8080.
-API Endpoints
-Create a New Docket (Question 1)
+### API Endpoints
+### Create a New Docket (Question 1)
 
 To create a new docket, send a POST request to the /docket endpoint with the required JSON payload. The API will generate a unique OrderNo and store the docket.
 
 Example Request:
 
-bash
-
+```bash
 curl -X POST -H "Content-Type: application/json" -d '{
   "Customer": "Lotus",
   "PickUpPoint": "Lotus Klang",
@@ -49,11 +51,11 @@ curl -X POST -H "Content-Type: application/json" -d '{
   "Quantity": 13,
   "Volume": 2.34
 }' http://localhost:8080/docket
+```
 
 Example Response:
 
-json
-
+```json
 {
   "OrderNo": "TDN0001",
   "Customer": "Lotus",
@@ -65,20 +67,20 @@ json
   "TruckNo": "",
   "LogsheetNo": ""
 }
-
-Fetch a Docket (Question 2)
+```
+### Fetch a Docket (Question 2)
 
 To fetch a docket based on its OrderNo, send a GET request to the /docket/{orderNo} endpoint.
 
 Example Request:
 
-bash
+```bash
 
 curl http://localhost:8080/docket/TDN0001
-
+```
 Example Response:
 
-json
+```json
 
 {
   "OrderNo": "TDN0001",
@@ -91,20 +93,20 @@ json
   "TruckNo": "",
   "LogsheetNo": ""
 }
-
-Fetch a List of Dockets (Question 3)
+```
+### Fetch a List of Dockets (Question 3)
 
 To fetch a list of all created dockets, send a GET request to the /docket endpoint.
 
 Example Request:
 
-bash
+```bash
 
 curl http://localhost:8080/docket
-
+```
 Example Response:
 
-json
+```json
 
 [
   {
@@ -130,47 +132,47 @@ json
     "LogsheetNo": ""
   }
 ]
-
-Create a New Logsheet (Question 4)
+```
+### Create a New Logsheet (Question 4)
 
 To create a new logsheet and update the dockets accordingly, send a POST request to the /logsheet endpoint with the required JSON payload.
 
 Example Request:
 
-bash
+```bash
 
 curl -X POST -H "Content-Type: application/json" -d '{
   "Dockets": ["TDN0001", "TDN0002"],
   "TruckNo": "BPR1234"
 }' http://localhost:8080/logsheet
-
+```
 Example Response:
 
-json
+```json
 
 {
   "LogsheetNo": "DT0001",
   "Dockets": ["TDN0001", "TDN0002"],
   "TruckNo": "BPR1234"
 }
-
-Fetch a Logsheet (Question 5)
+```
+### Fetch a Logsheet (Question 5)
 
 To fetch a logsheet based on its LogsheetNo, send a GET request to the /logsheet/{logsheetNo} endpoint.
 
 Example Request:
 
-bash
+```bash
 
 curl http://localhost:8080/logsheet/DT0001
-
+```
 Example Response:
 
-json
+```json
 
 {
   "LogsheetNo": "DT0001",
   "Dockets": ["TDN0001", "TDN0002"],
   "TruckNo": "BPR1234"
 }
-
+```
